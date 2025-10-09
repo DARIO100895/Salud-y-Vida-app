@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:padding="28dp"
+    tools:context=".CitaMedicaInfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DETALLE DE LA CITA"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/secondary_dark"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Tarjeta de datos -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/surface"
+            android:padding="20dp"
+            android:elevation="4dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/card_background"
+            android:clipToPadding="false"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Información de la cita"
+                android:textSize="14sp"
+                android:textColor="@color/text_secondary"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Línea separadora -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_light"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Contenedor dinámico de datos -->
+            <LinearLayout
+                android:id="@+id/tvMensaje"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:divider="@color/gray_light"
+                android:showDividers="middle"
+                android:dividerPadding="8dp" />
+        </LinearLayout>
+
+        <!-- Botones principales -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp">
+
+            <!-- Botón Confirmar Cita -->
+            <Button
+                android:id="@+id/btnConfirmarCita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirmar Cita"
+                android:textSize="15sp"
+                android:backgroundTint="@color/secondary_dark"
+                android:textColor="@color/white"
+                android:elevation="2dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Botones en línea -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btnCrearCita"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Crear Cita"
+                    android:textSize="15sp"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/secondary_dark"
+                    android:textColor="@color/white"
+                    android:elevation="2dp" />
+
+                <Button
+                    android:id="@+id/btnEditarDatos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Editar Datos"
+                    android:textSize="15sp"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/secondary_dark"
+                    android:textColor="@color/white"
+                    android:elevation="2dp" />
+            </LinearLayout>
+
+            <!-- Botón Salir -->
+            <Button
+                android:id="@+id/btnSalir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Salir"
+                android:textSize="15sp"
+                android:backgroundTint="@color/secondary_dark"
+                android:textColor="@color/white"
+                android:elevation="2dp"
+                android:layout_marginTop="12dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
