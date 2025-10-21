@@ -1,100 +1,97 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:padding="28dp"
-    tools:context=".PacienteInfoActivity">
+    android:padding="28dp">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <!-- Título -->
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="DATOS DEL PACIENTE"
-            android:textAlignment="center"
+            android:text="Datos del Paciente"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@color/secondary_dark"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-        <!-- Tarjeta de datos -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/surface"
-            android:padding="20dp"
-            android:elevation="4dp"
-            android:layout_marginBottom="32dp"
-            android:backgroundTint="@color/card_background"
-            android:clipToPadding="false"
-            android:layout_marginTop="8dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Información Personal"
-                android:textSize="14sp"
-                android:textColor="@color/text_secondary"
-                android:textStyle="bold"
-                android:layout_marginBottom="12dp" />
-
-            <!-- Linea separadora -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray_light"
-                android:layout_marginBottom="16dp" />
-
-            <!-- Contenedor dinámico de datos -->
-            <LinearLayout
-                android:id="@+id/tvMensaje"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:divider="@color/gray_light"
-                android:showDividers="middle"
-                android:dividerPadding="8dp" />
-        </LinearLayout>
+        <!-- Campos -->
+        <TextView
+            android:id="@+id/tvId"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvNombre"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvApellido"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvDni"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvEdad"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvSexo"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvTelefono"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvDireccion"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <!-- Botones -->
-        <LinearLayout
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnActualizar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:text="Actualizar"
+            app:backgroundTint="@color/secondary_dark"
+            app:cornerRadius="12dp"
+            android:layout_marginBottom="8dp"/>
 
-            <Button
-                android:id="@+id/btnCrearCita"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Crear Cita"
-                android:textSize="15sp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/secondary_dark"
-                android:textColor="@color/white"
-                android:elevation="2dp" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEliminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Eliminar"
+            app:backgroundTint="@color/error"
+            app:cornerRadius="12dp"
+            android:layout_marginBottom="8dp"/>
 
-            <Button
-                android:id="@+id/btnEditarDatos"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Editar Datos"
-                android:textSize="15sp"
-                android:layout_marginStart="8dp"
-                android:backgroundTint="@color/secondary_dark"
-                android:textColor="@color/white"
-                android:elevation="2dp" />
-        </LinearLayout>
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnVolver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Volver"
+            app:cornerRadius="12dp"/>
     </LinearLayout>
 </ScrollView>

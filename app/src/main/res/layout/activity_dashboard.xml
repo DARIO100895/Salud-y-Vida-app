@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="28dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:text="Dashboard"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/secondary_dark"
+            android:layout_marginBottom="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- 6 botones -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPacientes"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pacientes"
+            android:textSize="18sp"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/secondary_dark"
+            app:strokeWidth="2dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Próximamente los demás -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMedicos"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Médicos"
+            android:textSize="18sp"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/secondary_dark"
+            app:strokeWidth="2dp"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEspecialidades"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Especialidades"
+            android:textSize="18sp"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/secondary_dark"
+            app:strokeWidth="2dp"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCitas"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Citas"
+            android:textSize="18sp"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/secondary_dark"
+            app:strokeWidth="2dp"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMedicamentos"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medicamentos"
+            android:textSize="18sp"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/secondary_dark"
+            app:strokeWidth="2dp"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHistoria"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Historia Clínica"
+            android:textSize="18sp"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/secondary_dark"
+            app:strokeWidth="2dp" />
+    </LinearLayout>
+</ScrollView>

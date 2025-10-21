@@ -1,4 +1,4 @@
-package com.example.salud_y_vida
+package com.example.salud_y_vida.ui.p_cita.add
 
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -11,6 +11,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.salud_y_vida.ui.p_cita.info.CitaMedicaInfoActivity
+import com.example.salud_y_vida.R
 import com.google.android.material.textfield.TextInputEditText
 import java.util.Calendar
 
@@ -65,45 +67,36 @@ class CitaMedicaActivity : AppCompatActivity() {
         }
         // Botón Registrar
         btnRegistrar.setOnClickListener {
-            val paciente = spinnerPaciente.selectedItem.toString()
-            val medico = spinnerMedico.selectedItem.toString()
-            val fecha = etFecha.text.toString()
-            val hora = spinnerHora.selectedItem.toString()
-            val estado = spinnerEstado.selectedItem.toString()
+            val paciente = spinnerPaciente.selectedItem?.toString()?.trim().orEmpty()
+            val medico = spinnerMedico.selectedItem?.toString()?.trim().orEmpty()
+            val fecha = etFecha.text?.toString()?.trim().orEmpty()
+            val hora = spinnerHora.selectedItem?.toString()?.trim().orEmpty()
+            val estado = spinnerEstado.selectedItem?.toString()?.trim().orEmpty()
 
             // Validaciones
-            when {
-                paciente.startsWith("Seleccione") -> {
-                    Toast.makeText(this, "Seleccione un paciente", Toast.LENGTH_SHORT).show()
+
+            if ( paciente == "Seleccione un paciente" || paciente.isEmpty() ||
+                 medico == "Seleccione un médico" || medico.isEmpty() ||
+                 fecha == "Seleccione una fecha" || fecha.isEmpty() ||
+                 hora == "Seleccione una hora" || hora.isEmpty()  ||
+                 estado == "Seleccione un estado" || estado.isEmpty()) {
+
+                    Toast.makeText(this, "Seleccione y complete todo los campos", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
-                }
-                medico.startsWith("Seleccione") -> {
-                    Toast.makeText(this, "Seleccione un médico", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-                fecha.isEmpty() -> {
-                    Toast.makeText(this, "Seleccione una fecha", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-                hora.startsWith("Seleccione") -> {
-                    Toast.makeText(this, "Seleccione una hora disponible", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-                estado.startsWith("Seleccione") -> {
-                    Toast.makeText(this, "Seleccione un estado", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
             }
 
             // Enviar datos a RegistroDeCitasInfoActivity
-            val intent = Intent(this, CitaMedicaInfoActivity::class.java)
-            intent.putExtra("elPaciente", paciente)
-            intent.putExtra("elMedico", medico)
-            intent.putExtra("elFecha", fecha)
-            intent.putExtra("elHora", hora)
-            intent.putExtra("elEstado", estado)
+            val i = Intent(this, CitaMedicaInfoActivity::class.java)
 
-            startActivity(intent)
+            i.putExtra("elPaciente", paciente)
+            i.putExtra("elMedico", medico)
+            i.putExtra("elFecha", fecha)
+            i.putExtra("elHora", hora)
+            i.putExtra("elEstado", estado)
+
+            Toast.makeText(this, "Cita medica guardada exitosamente", Toast.LENGTH_SHORT).show()
+
+            startActivity(i)
         }
     }
 }

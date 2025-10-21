@@ -1,0 +1,38 @@
+package com.example.salud_y_vida.data.remote
+
+import com.example.salud_y_vida.data.model.Cita
+import com.example.salud_y_vida.data.model.Paciente
+import retrofit2.Response
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+
+interface ApiService {
+    //Paciente
+    @GET("api/pacientes")
+    suspend fun getPaciente() : Response<List<Paciente>>
+    @GET("api/pacientes/{id}")
+    suspend fun getPaciente(@Path("id") id: Int): Response<Paciente>
+    @POST("api/pacientes")
+    suspend fun  createPaciente(@Body paciente: Paciente) : Response<Paciente>
+    @PUT("api/pacientes/{id}")
+    suspend fun updatePaciente (@Path("id") id : Int, @Body paciente: Paciente) : Response<Paciente>
+    @DELETE("api/pacientes/{id}")
+    suspend fun deletePaciente(@Path("id") id: Int) : Response<Void>
+
+    //CitaMedica
+
+    @GET("api/cita")
+    suspend fun getCita() : Response<List<Cita>>
+    @GET("api/cita/{id}")
+    suspend fun getCita(@Path("id")id: Int) : Response<Cita>
+    @POST("api/cita")
+    suspend fun createCita (@Body cita: Cita) : Response<Cita>
+    @PUT("api/cita/{id}")
+    suspend fun updateCita (@Path("id")id: Int, @Body cita: Cita ) : Response<Cita>
+    @DELETE("api/cita/{id}")
+    suspend fun deleteCita(@Path("id")id: Int) : Response<Void>
+}

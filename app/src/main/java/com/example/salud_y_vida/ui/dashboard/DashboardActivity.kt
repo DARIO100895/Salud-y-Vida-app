@@ -1,0 +1,34 @@
+package com.example.salud_y_vida.ui.dashboard
+
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.salud_y_vida.databinding.ActivityDashboardBinding
+import com.example.salud_y_vida.ui.p_cita.list.CitaListActivity
+import com.example.salud_y_vida.ui.p_paciente.list.PacienteListActivity
+
+
+class DashboardActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityDashboardBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivityDashboardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Botón Pacientes
+        binding.btnPacientes.setOnClickListener {
+            startActivity(Intent(this, PacienteListActivity::class.java))
+        }
+
+        //Boton Cita Medica
+        binding.btnCitas.setOnClickListener {
+            startActivity(Intent(this, CitaListActivity::class.java))
+        }
+
+        // Demás botones (próximamente)
+        // binding.btnMedicos.setOnClickListener { ... }
+    }
+}

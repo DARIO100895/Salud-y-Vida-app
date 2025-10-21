@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.p_paciente.add.PacienteActivity">
+    tools:context=".IngresoMedicamentoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,10 +16,9 @@
 
         <!-- Título -->
         <TextView
-            android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Registro de Paciente"
+            android:text="Ingreso de Medicamento"
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -30,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="Ingrese sus Datos"
+            android:text="Complete los Datos"
             android:textColor="@color/secondary_dark"
             android:textStyle="bold"
             android:layout_marginBottom="16dp" />
@@ -40,14 +39,38 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp">
+            android:layout_marginBottom="12dp"
+            app:endIconMode="custom"
+            app:endIconDrawable="@android:drawable/ic_menu_search">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingVertical="12dp"
                 android:textColor="@color/black"
-                android:id="@+id/etNombre"
-                android:hint="Nombre"/>
+                android:id="@+id/etIdProveedor"
+                android:hint="ID Proveedor"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="none"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:endIconMode="custom"
+            app:endIconDrawable="@android:drawable/ic_menu_search">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:textColor="@color/black"
+                android:id="@+id/etIdMedicamento"
+                android:hint="ID Medicamento"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="none"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -59,21 +82,8 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="12dp"
                 android:textColor="@color/black"
-                android:id="@+id/etApellido"
-                android:hint="Apellido"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingVertical="12dp"
-                android:textColor="@color/black"
-                android:id="@+id/etDNI"
-                android:hint="DNI"
+                android:id="@+id/etCantidad"
+                android:hint="Cantidad"
                 android:inputType="number"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,9 +96,9 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="12dp"
                 android:textColor="@color/black"
-                android:id="@+id/etEdad"
-                android:hint="Edad"
-                android:inputType="number"/>
+                android:id="@+id/etFechaIngreso"
+                android:hint="Fecha Ingreso"
+                android:inputType="date"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -100,44 +110,17 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="12dp"
                 android:textColor="@color/black"
-                android:id="@+id/etSexo"
-                android:hint="Sexo"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingVertical="12dp"
-                android:textColor="@color/black"
-                android:id="@+id/etTelefono"
-                android:hint="Telefono"
-                android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingVertical="12dp"
-                android:textColor="@color/black"
-                android:id="@+id/etDireccion"
-                android:hint="Direccion"/>
+                android:id="@+id/etObservaciones"
+                android:hint="Observaciones"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!--Boton-->
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnGuardar"
+            android:id="@+id/btnGuardarMedicamento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Guardar Paciente"
+            android:text="Guardar Medicamento"
             android:textColor="@android:color/white"
             android:backgroundTint="@color/secondary_dark"
             app:cornerRadius="12dp"
@@ -145,5 +128,4 @@
             android:layout_marginTop="8dp" />
 
     </LinearLayout>
-
 </ScrollView>
