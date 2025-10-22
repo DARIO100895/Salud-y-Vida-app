@@ -1,21 +1,14 @@
-package com.example.salud_y_vida.ui.p_paciente.add
+package com.example.salud_y_vida.ui.p_paciente.addon
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.salud_y_vida.ui.p_paciente.info.PacienteInfoActivity
-import com.example.salud_y_vida.R
 import com.example.salud_y_vida.data.model.Paciente
-import com.example.salud_y_vida.databinding.ActivityCitaMedicaBinding
 import com.example.salud_y_vida.databinding.ActivityPacienteBinding
 import com.example.salud_y_vida.ui.p_paciente.view.PacienteViewModel
-import com.google.android.material.textfield.TextInputEditText
 
 class PacienteActivity : AppCompatActivity() {
 
@@ -49,7 +42,8 @@ class PacienteActivity : AppCompatActivity() {
     private fun setupObservers() {
         viewModel.operationSuccess.observe(this) {success ->
             if (success) {
-                Toast.makeText(this,"Paciente ${if(isEditMode)"actualizado" else "creado"} correctamente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Paciente ${if(isEditMode)"actualizado" else "creado"} correctamente",
+                    Toast.LENGTH_SHORT).show()
                 finish()
             }
         }

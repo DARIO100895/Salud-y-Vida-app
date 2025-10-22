@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.salud_y_vida.databinding.ActivityDashboardBinding
+import com.example.salud_y_vida.ui.p.medico.list.MedicoListActivity
 import com.example.salud_y_vida.ui.p_cita.list.CitaListActivity
 import com.example.salud_y_vida.ui.p_paciente.list.PacienteListActivity
 
@@ -26,6 +27,11 @@ class DashboardActivity : AppCompatActivity() {
         //Boton Cita Medica
         binding.btnCitas.setOnClickListener {
             startActivity(Intent(this, CitaListActivity::class.java))
+        }
+
+        //Boton Medicos
+        binding.btnMedicos.setOnClickListener {
+            startActivity(Intent(this, MedicoListActivity::class.java))
         }
 
         // Demás botones (próximamente)

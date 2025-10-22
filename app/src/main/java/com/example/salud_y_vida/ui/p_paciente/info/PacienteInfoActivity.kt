@@ -8,7 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.salud_y_vida.data.model.Paciente
 import com.example.salud_y_vida.databinding.ActivityPacienteInfoBinding
-import com.example.salud_y_vida.ui.p_paciente.add.PacienteActivity
+import com.example.salud_y_vida.ui.p_paciente.addon.PacienteActivity
 import com.example.salud_y_vida.ui.p_paciente.view.PacienteViewModel
 
 class PacienteInfoActivity : AppCompatActivity() {

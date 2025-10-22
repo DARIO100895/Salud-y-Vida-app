@@ -1,6 +1,5 @@
-package com.example.salud_y_vida.ui.p_cita.list
+package com.example.salud_y_vida.ui.p_cita.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -16,18 +15,9 @@ class CitaAdapter (
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(c: Cita) = with(binding) {
-            val paciente = c.paciente
-            tvNombrePaciente.text = if (paciente != null) {
-                "${paciente.nombrePaciente} ${paciente.apellidoPaciente}"
-            } else {
-                "Paciente ID: ${c.pacienteid}"
-            }
-            tvFecha.text = "Fecha: ${c.fechaCita?.toString() ?: "Sin fecha"}"
-            tvEstado.text = "Estado: ${c.estadoCita ?: "Sin estado"}"
-            tvHora.text = "Hora: ${c.horaCita?.toString() ?: "Sin Hora"}"
-
+        tvNombrePaciente.text = "${c.pacienteid}${c.medicoid}"
+            tvEstado.text = "Estado: ${c.estadoCita}"
             root.setOnClickListener { onClick(c) }
-
         }
     }
 
@@ -38,10 +28,9 @@ class CitaAdapter (
         return VH(binding)
     }
 
-    override fun onBindViewHolder(holder: VH, position: Int) {
-        Log.d("CITA_ADAPTER", "Bind posición $position: ${lista[position]}")
+    override fun onBindViewHolder(holder: VH, position: Int) =
         holder.bind(lista[position])
-    }
+
 
 
 
@@ -53,4 +42,3 @@ class CitaAdapter (
         notifyDataSetChanged()
     }
 }
-
