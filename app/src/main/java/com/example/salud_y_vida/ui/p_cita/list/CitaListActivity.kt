@@ -6,11 +6,12 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
+import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.salud_y_vida.databinding.ActivityCitaMedicaListBinding
 import com.example.salud_y_vida.ui.dashboard.DashboardActivity
-import com.example.salud_y_vida.ui.p_cita.add.CitaMedicaActivity
+import com.example.salud_y_vida.ui.p_cita.adapter.CitaAdapter
+import com.example.salud_y_vida.ui.p_cita.addon.CitaMedicaActivity
 import com.example.salud_y_vida.ui.p_cita.info.CitaMedicaInfoActivity
 import com.example.salud_y_vida.ui.p_cita.view.CitaViewModel
 
@@ -28,7 +29,7 @@ class CitaListActivity : AppCompatActivity() {
         binding = ActivityCitaMedicaListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.d("CITAS","onCreate lista")
+        Log.d("CITA","onCreate lista")
 
         //RecyclerView
         adapter = CitaAdapter(emptyList()) { cita ->
@@ -44,7 +45,7 @@ class CitaListActivity : AppCompatActivity() {
         setupObservers()
 
         //Buscador
-        binding.searchCita.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
+        binding.searchCita.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean = false
             override fun onQueryTextChange(newText: String?): Boolean {
                 filtrar(newText.orEmpty())
@@ -63,13 +64,13 @@ class CitaListActivity : AppCompatActivity() {
         }
 
         //Cargar Datos
-        Log.d("CITAS", "Solicitando carga..")
+        Log.d("CITA", "Solicitando carga..")
         viewModel.cargarCitas()
         }
 
     private fun setupObservers() {
         viewModel.cita.observe(this) { lista ->
-            Log.d("CITAS","Observada lista con ${lista.size} items")
+            Log.d("CITA","Observada lista con ${lista.size} items")
             listaOriginal = lista
             adapter.actualizar(lista)
 
@@ -82,7 +83,7 @@ class CitaListActivity : AppCompatActivity() {
 
         viewModel.error.observe(this) { error ->
             error?.let {
-                Log.e("CITAS_ERROR", it)
+                Log.e("CITA_ERROR", it)
                 Toast.makeText(this,"Error de conexion: $it", Toast.LENGTH_LONG).show()
                 //Mensaje para el ClearText
                 if (it.contains("CLEARTEXT")) {
@@ -94,10 +95,10 @@ class CitaListActivity : AppCompatActivity() {
 
         viewModel.isLoading.observe(this) { isLoading ->
             if (isLoading) {
-                Log.d("CITAS","Cargando..")
+                Log.d("CITA","Cargando..")
 
             } else {
-                Log.d("CITAS", "Carga completa")
+                Log.d("CITA", "Carga completa")
             }
         }
     }
@@ -112,16 +113,15 @@ class CitaListActivity : AppCompatActivity() {
         val filtrada = if(texto.isEmpty()) {
             listaOriginal
         } else {
-            listaOriginal.filter { cita ->
-                val paciente = cita.paciente
-                paciente?.nombrePaciente?.contains(texto,true) == true ||
-                        paciente?.apellidoPaciente?.contains(texto,true) == true
+            listaOriginal.filter {
+                it.pacienteid.toString()?.contains(texto, ignoreCase = true) == true ||
+                        it.medicoid.toString()?.contains(texto,ignoreCase = true) == true ||
+                        it.estadoCita?.contains(texto,ignoreCase = true) == true
 
             }
         }
-        Log.d("CITAS", "Actualizando adapter con ${listaOriginal.size} citas")
-
         adapter.actualizar(filtrada)
+
 
         //Si no hay resultados
         if(texto.isEmpty() && filtrada.isEmpty()) {

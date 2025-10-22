@@ -1,6 +1,6 @@
 package com.example.salud_y_vida.data.service
 
-interface CrudService<T,ID> {
+interface GenericService<T,ID> {
 
     suspend fun listar() : Result<List<T>>
     suspend fun obtener(id: ID) : Result<T>

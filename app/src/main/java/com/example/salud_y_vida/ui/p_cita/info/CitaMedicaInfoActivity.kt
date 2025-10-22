@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.salud_y_vida.R
-import com.example.salud_y_vida.ui.p_cita.add.CitaMedicaActivity
+import com.example.salud_y_vida.ui.p_cita.addon.CitaMedicaActivity
 
 class CitaMedicaInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

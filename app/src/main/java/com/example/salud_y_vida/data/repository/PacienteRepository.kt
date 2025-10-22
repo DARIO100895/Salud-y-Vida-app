@@ -1,8 +1,8 @@
 package com.example.salud_y_vida.data.repository
 
 import com.example.salud_y_vida.data.model.Paciente
-import com.example.salud_y_vida.data.remote.ApiService
-import com.example.salud_y_vida.data.remote.RetroFitClient
+import com.example.salud_y_vida.data.api.ApiService
+import com.example.salud_y_vida.data.deploy.RetroFitClient
 
 class PacienteRepository (
 

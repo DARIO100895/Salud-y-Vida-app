@@ -8,17 +8,17 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.salud_y_vida.ui.p_paciente.add.PacienteActivity
+import com.example.salud_y_vida.ui.p_paciente.addon.PacienteActivity
 import com.example.salud_y_vida.databinding.ActivityPacienteListBinding
 import com.example.salud_y_vida.ui.p_paciente.view.PacienteViewModel
 import com.example.salud_y_vida.ui.dashboard.DashboardActivity
+import com.example.salud_y_vida.ui.p_paciente.adapter.PacienteAdapter
 import com.example.salud_y_vida.ui.p_paciente.info.PacienteInfoActivity
 
 class PacienteListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPacienteListBinding
     private val viewModel: PacienteViewModel by viewModels()
-
     private lateinit var adapter: PacienteAdapter
     private var listaOriginal: List<com.example.salud_y_vida.data.model.Paciente> = emptyList()
 

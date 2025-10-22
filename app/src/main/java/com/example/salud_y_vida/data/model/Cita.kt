@@ -2,8 +2,7 @@ package com.example.salud_y_vida.data.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import java.time.LocalDate
-import java.time.LocalTime
+
 
 @Parcelize
 data class Cita (
@@ -13,7 +12,6 @@ data class Cita (
     val medicoid: Int? = null,
     val fechaCita : String ? = null,
     val horaCita : String ? = null,
-    val estadoCita : String? = null,
-    var paciente : Paciente? = null
+    val estadoCita : String? = null
 
 ) : Parcelable

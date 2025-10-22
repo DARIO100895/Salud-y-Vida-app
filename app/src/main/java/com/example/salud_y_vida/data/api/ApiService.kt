@@ -1,6 +1,7 @@
-package com.example.salud_y_vida.data.remote
+package com.example.salud_y_vida.data.api
 
 import com.example.salud_y_vida.data.model.Cita
+import com.example.salud_y_vida.data.model.Medico
 import com.example.salud_y_vida.data.model.Paciente
 import retrofit2.Response
 import retrofit2.http.Body
@@ -12,7 +13,7 @@ import retrofit2.http.Path
 
 interface ApiService {
     //Paciente
-    @GET("api/pacientes")
+    @GET("api/v1/pacientes")
     suspend fun getPaciente() : Response<List<Paciente>>
     @GET("api/pacientes/{id}")
     suspend fun getPaciente(@Path("id") id: Int): Response<Paciente>
@@ -25,14 +26,27 @@ interface ApiService {
 
     //CitaMedica
 
-    @GET("api/cita")
+    @GET("api/v1/cita")
     suspend fun getCita() : Response<List<Cita>>
-    @GET("api/cita/{id}")
+    @GET("api/citas/{id}")
     suspend fun getCita(@Path("id")id: Int) : Response<Cita>
-    @POST("api/cita")
+    @POST("api/citas")
     suspend fun createCita (@Body cita: Cita) : Response<Cita>
-    @PUT("api/cita/{id}")
-    suspend fun updateCita (@Path("id")id: Int, @Body cita: Cita ) : Response<Cita>
+    @PUT("api/citas/{id}")
+    suspend fun updateCita (@Path("id")id: Int, @Body cita: Cita) : Response<Cita>
     @DELETE("api/cita/{id}")
     suspend fun deleteCita(@Path("id")id: Int) : Response<Void>
+
+    //Medicos
+
+    @GET("api/v1/medicos")
+    suspend fun getMedicos() : Response<List<Medico>>
+    @GET("api/v1/medicos/{id}")
+    suspend fun getMedicos(@Path("id") id : Int) : Response<Medico>
+    @POST("api/v1/medicos")
+    suspend fun createMedicos(@Body medico: Medico) : Response<Medico>
+    @PUT("api/v1/medicos/{id}")
+    suspend fun updateMedicos(@Path("id")id: Int, @Body medico: Medico) : Response<Medico>
+    @DELETE("api/v1/medicos/{id}")
+    suspend fun deleteMedicos(@Path("id") id: Int) : Response<Void>
 }

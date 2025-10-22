@@ -1,7 +1,6 @@
 package com.example.salud_y_vida.data.repository
 
-import com.example.salud_y_vida.data.service.CrudService
-import okhttp3.Call
+import com.example.salud_y_vida.data.service.GenericService
 
 open class BaseRepository<T,ID> (
 
@@ -10,7 +9,7 @@ open class BaseRepository<T,ID> (
     private val create : suspend (T) -> retrofit2.Response<T>,
     private val update : suspend (ID,T) -> retrofit2.Response<T>,
     private val delete : suspend (ID) -> retrofit2.Response<Void>
-) : CrudService <T,ID> {
+) : GenericService <T,ID> {
 
     override suspend fun listar() : Result<List<T>> = safeCall { getAll() }
     override suspend fun obtener(id: ID) : Result<T> = safeCall { getById(id)}

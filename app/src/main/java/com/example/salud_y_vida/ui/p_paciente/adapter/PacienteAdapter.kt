@@ -1,4 +1,4 @@
-package com.example.salud_y_vida.ui.p_paciente.list
+package com.example.salud_y_vida.ui.p_paciente.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -33,7 +33,7 @@ class PacienteAdapter(
 
     override fun getItemCount() = lista.size
 
-    /* útil para actualizar lista después de CRUD */
+    // Actualizar lista despues del CRUD
     fun actualizar(nuevaLista: List<Paciente>) {
         lista = nuevaLista
         notifyDataSetChanged()
