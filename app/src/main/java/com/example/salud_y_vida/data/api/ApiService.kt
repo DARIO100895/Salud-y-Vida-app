@@ -15,26 +15,26 @@ interface ApiService {
     //Paciente
     @GET("api/v1/pacientes")
     suspend fun getPaciente() : Response<List<Paciente>>
-    @GET("api/pacientes/{id}")
+    @GET("api/v1/pacientes/{id}")
     suspend fun getPaciente(@Path("id") id: Int): Response<Paciente>
-    @POST("api/pacientes")
+    @POST("api/v1/pacientes")
     suspend fun  createPaciente(@Body paciente: Paciente) : Response<Paciente>
-    @PUT("api/pacientes/{id}")
+    @PUT("api/v1/pacientes/{id}")
     suspend fun updatePaciente (@Path("id") id : Int, @Body paciente: Paciente) : Response<Paciente>
-    @DELETE("api/pacientes/{id}")
+    @DELETE("api/v1/pacientes/{id}")
     suspend fun deletePaciente(@Path("id") id: Int) : Response<Void>
 
     //CitaMedica
 
     @GET("api/v1/cita")
     suspend fun getCita() : Response<List<Cita>>
-    @GET("api/citas/{id}")
+    @GET("api/v1/cita/{id}")
     suspend fun getCita(@Path("id")id: Int) : Response<Cita>
-    @POST("api/citas")
+    @POST("api/v1/cita")
     suspend fun createCita (@Body cita: Cita) : Response<Cita>
-    @PUT("api/citas/{id}")
+    @PUT("api/v1/cita/{id}")
     suspend fun updateCita (@Path("id")id: Int, @Body cita: Cita) : Response<Cita>
-    @DELETE("api/cita/{id}")
+    @DELETE("api/v1/cita/{id}")
     suspend fun deleteCita(@Path("id")id: Int) : Response<Void>
 
     //Medicos
