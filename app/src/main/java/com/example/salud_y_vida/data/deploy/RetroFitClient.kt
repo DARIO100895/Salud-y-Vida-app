@@ -11,7 +11,7 @@ object RetroFitClient {
 
     //URL
     private const val BASE_URL = "https://salud-y-vida-backend-production.up.railway.app/"
-
+    //private const val BASE_URL = "http://10.180.106.188:8080/"
 
     private val okHttpClient = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)
