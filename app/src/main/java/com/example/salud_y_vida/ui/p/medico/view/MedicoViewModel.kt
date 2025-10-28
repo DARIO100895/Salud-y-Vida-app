@@ -4,16 +4,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.salud_y_vida.data.model.Especialidad
 import com.example.salud_y_vida.data.model.Medico
+import com.example.salud_y_vida.data.repository.EspecialidadRepository
 import com.example.salud_y_vida.data.repository.MedicoRepository
 import kotlinx.coroutines.launch
 
 class MedicoViewModel : ViewModel() {
 
     private val medicoRepository = MedicoRepository()
+    private val especialidadRepository = EspecialidadRepository()
 
     private val _medicos = MutableLiveData<List<Medico>>()
     val medicos : LiveData<List<Medico>> = _medicos
+
+    private val _especialidades = MutableLiveData<List<Especialidad>>()
+
+    val especialidades : LiveData<List<Especialidad>> = _especialidades
 
     private val _medicoCreado = MutableLiveData<Medico?>()
     val medicoCreado : LiveData<Medico?> = _medicoCreado
@@ -30,17 +37,48 @@ class MedicoViewModel : ViewModel() {
     fun cargarMedicos() = viewModelScope.launch {
         _isLoading.value = true
         try {
-            val result = medicoRepository.listar()
-            if (result.isSuccess) {
-                _medicos.value = result.getOrNull() ?: emptyList()
+            // Obtener datos
+            val medicosResult = medicoRepository.listar()
+            val especialidadesResult = especialidadRepository.listar()
+
+            if (medicosResult.isSuccess && especialidadesResult.isSuccess) {
+                val medicos = medicosResult.getOrNull() ?: emptyList()
+                val especialidades = especialidadesResult.getOrNull() ?: emptyList()
+
+                // Mostrar nombre de Especialidad de medico
+                val medicosConEspecialidad = medicos.map { medico ->
+                    val especialidadEncontrada = especialidades.find { it.id == medico.especialidadId }
+                    medico.copy(especialidad = especialidadEncontrada)
+                }
+
+                _medicos.value = medicosConEspecialidad
                 _error.value = null
             } else {
-                _error.value = result.exceptionOrNull() ?.message
+                _error.value = medicosResult.exceptionOrNull()?.message
+                    ?: especialidadesResult.exceptionOrNull()?.message
                 _medicos.value = emptyList()
+            }
+        } catch (e: Exception) {
+            _error.value = e.message
+            _medicos.value = emptyList()
+        }
+        _isLoading.value = false
+    }
+
+    fun cargarEspecialidades() = viewModelScope.launch {
+        _isLoading.value = true
+        try {
+            val result = especialidadRepository.listar()
+            if(result.isSuccess) {
+                _especialidades.value = result.getOrNull()
+                _error.value = null
+            } else {
+                _error.value = result.exceptionOrNull()?.message
+                _especialidades.value = emptyList()
             }
         } catch (e : Exception) {
             _error.value = e.message
-            _medicos.value = emptyList()
+            _especialidades.value = emptyList()
         }
         _isLoading.value = false
     }
@@ -50,13 +88,15 @@ class MedicoViewModel : ViewModel() {
         try {
             val result = medicoRepository.crear(medico)
             if(result.isSuccess) {
-                _medicoCreado.value = result.getOrNull()
+                val creado = result.getOrNull()
+                val especialidad = _especialidades.value?.find { it.id == creado?.especialidadId }
+                _medicoCreado.value = creado?.copy(especialidad = especialidad)
                 _operationSuccess.value = true
             } else {
                 _error.value = result.exceptionOrNull()?.message
                 _operationSuccess.value = false
             }
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             _error.value = e.message
             _operationSuccess.value = false
         }
@@ -68,16 +108,20 @@ class MedicoViewModel : ViewModel() {
         try{
             val result = medicoRepository.actualizar(id,medico)
             if(result.isSuccess) {
+                val actualizado = result.getOrNull()
+                val especialidad = _especialidades.value?.find { it.id == actualizado?.especialidadId }
+                _medicoCreado.value = actualizado?.copy(especialidad = especialidad)
                 _operationSuccess.value = true
                 cargarMedicos()
             } else {
                 _error.value = result.exceptionOrNull()?.message
                 _operationSuccess.value = false
             }
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             _error.value = e.message
             _operationSuccess.value = false
         }
+
         _isLoading.value = false
     }
     fun eliminarMedico(id: Int) = viewModelScope.launch {

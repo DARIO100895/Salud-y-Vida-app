@@ -76,6 +76,7 @@ class PacienteInfoActivity : AppCompatActivity() {
     }
 
     private fun confirmarEliminar() {
+
         AlertDialog.Builder(this)
             .setTitle("Confirmar Eliminación")
             .setMessage("¿Estás seguro de eliminar a ${paciente.nombrePaciente} ${paciente.apellidoPaciente}?")

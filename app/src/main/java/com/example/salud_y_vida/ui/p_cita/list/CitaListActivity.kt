@@ -113,10 +113,14 @@ class CitaListActivity : AppCompatActivity() {
         val filtrada = if(texto.isEmpty()) {
             listaOriginal
         } else {
-            listaOriginal.filter {
-                it.pacienteid.toString()?.contains(texto, ignoreCase = true) == true ||
-                        it.medicoid.toString()?.contains(texto,ignoreCase = true) == true ||
-                        it.estadoCita?.contains(texto,ignoreCase = true) == true
+            listaOriginal.filter { cita ->
+                val apellidoPaciente = cita.paciente?.apellidoPaciente ?: ""
+                val apellidoMedico = cita.medico?.apellidoMed ?: ""
+                val estadoCita = cita.estadoCita?: ""
+
+               apellidoPaciente.contains(texto, ignoreCase = true) == true ||
+                        apellidoMedico.contains(texto,ignoreCase = true) == true ||
+                       estadoCita.contains(texto, ignoreCase = true)
 
             }
         }
@@ -125,7 +129,7 @@ class CitaListActivity : AppCompatActivity() {
 
         //Si no hay resultados
         if(texto.isEmpty() && filtrada.isEmpty()) {
-            Toast.makeText(this,"No se encontraron pacientes", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"No se encontraron citas", Toast.LENGTH_SHORT).show()
         }
     }
 
