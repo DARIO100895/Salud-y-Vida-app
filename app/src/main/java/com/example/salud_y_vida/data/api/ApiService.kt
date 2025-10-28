@@ -1,6 +1,7 @@
 package com.example.salud_y_vida.data.api
 
 import com.example.salud_y_vida.data.model.Cita
+import com.example.salud_y_vida.data.model.Especialidad
 import com.example.salud_y_vida.data.model.Medico
 import com.example.salud_y_vida.data.model.Paciente
 import retrofit2.Response
@@ -49,4 +50,18 @@ interface ApiService {
     suspend fun updateMedicos(@Path("id")id: Int, @Body medico: Medico) : Response<Medico>
     @DELETE("api/v1/medicos/{id}")
     suspend fun deleteMedicos(@Path("id") id: Int) : Response<Void>
+
+
+    //Especialidad
+
+    @GET("api/v1/especialidad")
+    suspend fun getEspecialidad() : Response<List<Especialidad>>
+    @GET("api/v1/especialidad/{id}")
+    suspend fun getEspecialidad(@Path("id") id: Int) : Response<Especialidad>
+    @POST("api/v1/especialidad")
+    suspend fun createEspecialidad(@Body especialidad: Especialidad) : Response<Especialidad>
+    @PUT("api/v1/especialidad/{id}")
+    suspend fun updateEspecialidad(@Path("id") id: Int, @Body especialidad: Especialidad) : Response<Especialidad>
+    @DELETE("api/v1/especialidad/{id}")
+    suspend fun deleteEspecialidad(@Path("id") id: Int) : Response<Void>
 }

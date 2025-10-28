@@ -9,14 +9,16 @@ import com.example.salud_y_vida.databinding.ItemCitaBinding
 class CitaAdapter (
     private var lista : List<Cita>,
     private val onClick : (Cita) -> Unit
+
 ) : RecyclerView.Adapter<CitaAdapter.VH>() {
 
     inner class VH(private val binding: ItemCitaBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(c: Cita) = with(binding) {
-        tvNombrePaciente.text = "${c.pacienteid}${c.medicoid}"
-            tvEstado.text = "Estado: ${c.estadoCita}"
+        tvNombrePaciente.text = "Paciente: ${c.paciente?.apellidoPaciente ?: "Paciente no Asignado"}"
+            tvMedico.text = "Medico: ${c.medico?.apellidoMed ?: "Medico no asignado"}"
+            tvEstado.text = "Estado de cita: ${c.estadoCita}"
             root.setOnClickListener { onClick(c) }
         }
     }
@@ -31,13 +33,10 @@ class CitaAdapter (
     override fun onBindViewHolder(holder: VH, position: Int) =
         holder.bind(lista[position])
 
-
-
-
     override fun getItemCount() = lista.size
 
-    fun actualizar (nuevaLista : List<Cita>) {
 
+    fun actualizar (nuevaLista : List<Cita>) {
         lista = nuevaLista
         notifyDataSetChanged()
     }

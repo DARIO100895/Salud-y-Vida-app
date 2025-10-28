@@ -22,7 +22,7 @@ object RetroFitClient {
         .retryOnConnectionFailure(false)
         .addInterceptor(HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
-})
+        })
         .addInterceptor { chain ->
             val originalRequest = chain.request()
             val newRequest = originalRequest.newBuilder()

@@ -73,6 +73,25 @@
         <activity android:name=".ui.p.medico.list.MedicoListActivity"
             android:exported="true"
             android:theme="@style/Theme.Salud_y_Vida"/>
+        <activity android:name=".ui.p.medico.addon.MedicoActivity"
+            android:exported="true"/>
+        <activity android:name=".ui.p.medico.info.MedicoInfoActivity"
+            android:exported="true"/>
+
+
+
+
+
+        <!--Especialidad-->
+        <activity android:name=".ui.p_especialidad.list.EspecialidadListActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Salud_y_Vida"/>
+        <activity android:name=".ui.p_especialidad.addon.EspecialidadActivity"
+            android:exported="true"/>
+        <activity android:name=".ui.p_especialidad.info.EspecialidadInfoActivity"
+            android:exported="true"/>
+
+
 
         <activity
             android:name=".IngresoMedicamentoActivity"
