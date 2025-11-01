@@ -1,53 +1,154 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="28dp">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <!-- Imagen de fondo -->
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        android:src="@drawable/fondo_salud"
+        android:scaleType="centerCrop" />
 
-        <TextView
-            android:text="Iniciar Sesión"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/secondary_dark"
-            android:layout_marginBottom="24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
-        <com.google.android.material.textfield.TextInputLayout
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etUsuario"
+            android:gravity="center"
+            android:padding="32dp">
+
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
+            <FrameLayout
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_marginTop="4dp"
+                android:elevation="10dp">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/heartbeat" />
+            </FrameLayout>
+
+            <TextView
+                android:text="Iniciar Sesión"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="Ingresa a tu cuenta"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginBottom="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Usuario" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="vertical"
+                android:padding="28dp"
+                android:elevation="16dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPassword"
+                <TextView
+                    android:text="Usuario"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    app:boxBackgroundColor="@color/white"
+                    app:hintEnabled="false"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Tu usuario"
+                        android:textColorHint="@color/gray_medium"
+                        android:textSize="15sp"
+                        android:padding="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:text="Contraseña"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="28dp"
+                    app:endIconMode="password_toggle"
+                    app:boxBackgroundColor="@color/white"
+                    app:hintEnabled="false"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Tu contraseña"
+                        android:inputType="textPassword"
+                        android:textSize="15sp"
+                        android:padding="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnIngresar"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:text="INGRESAR"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    app:cornerRadius="16dp"
+                    app:backgroundTint="@color/dark_background"
+                    android:elevation="8dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:text="¿Olvidaste tu contraseña?"
+                android:textSize="13sp"
+                android:textColor="#DDFFFFFF"
+                android:layout_marginTop="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Space
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Contraseña"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="40dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnIngresar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ingresar"
-            app:cornerRadius="12dp"
-            app:backgroundTint="@color/secondary_dark" />
-    </LinearLayout>
-</ScrollView>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

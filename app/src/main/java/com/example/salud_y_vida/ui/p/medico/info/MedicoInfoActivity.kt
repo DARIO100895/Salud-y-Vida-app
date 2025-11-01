@@ -10,6 +10,7 @@ import com.example.salud_y_vida.data.model.Medico
 import com.example.salud_y_vida.databinding.ActivityMedicoInfoBinding
 import com.example.salud_y_vida.ui.p.medico.addon.MedicoActivity
 import com.example.salud_y_vida.ui.p.medico.view.MedicoViewModel
+import com.example.salud_y_vida.ui.p_horario.addon.NuevoHorarioActivity
 
 class MedicoInfoActivity : AppCompatActivity() {
 
@@ -51,6 +52,12 @@ class MedicoInfoActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
+        binding.btnAgregarHorario.setOnClickListener {
+            val intent = Intent(this, NuevoHorarioActivity::class.java)
+            intent.putExtra("MEDICO", medico)
+            startActivity(intent)
+        }
+
 
         binding.btnVolver.setOnClickListener { finish() }
 
@@ -58,7 +65,6 @@ class MedicoInfoActivity : AppCompatActivity() {
     }
 
     private fun mostrarDatos(m: Medico) = with(binding) {
-        tvId.text = "ID: ${m.id ?: "N/A"}"
         tvNombre.text = "Nombre: ${m.nombreMed ?: "N/A"}"
         tvApellido.text = "Apellido: ${m.apellidoMed ?: "N/A"}"
         tvEspecialidad.text = "Especialidad: ${m.especialidad?.nombre ?: "Sin asignar"}"
@@ -75,7 +81,7 @@ class MedicoInfoActivity : AppCompatActivity() {
     private fun confirmarEliminar() {
         AlertDialog.Builder(this)
             .setTitle("Confirmar Eliminación")
-            .setMessage("¿Estás seguro de eliminar a ${medico.nombreMed} ${medico.apellidoMed}?")
+            .setMessage("¿Estás seguro de eliminar al Dr(a). ${medico.nombreMed} ${medico.apellidoMed}?")
             .setPositiveButton("Sí") { _, _ ->
                 medico.id?.let { id ->
                     viewModel.eliminarMedico(id)

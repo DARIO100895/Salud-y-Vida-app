@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.p.medico.addon.MedicoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="28dp">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nuevo Horario"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/secondary_dark"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Ingrese horario"
+            android:textColor="@color/secondary_dark"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Campos de datos -->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:textColor="@color/black"
+                android:enabled="false"
+                android:id="@+id/etNombre"
+                android:hint="Nombre"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Desde:"
+            android:textStyle="bold"
+            android:textColor="@color/secondary_dark"
+            android:layout_marginBottom="8dp" />
+
+        <Spinner
+            android:id="@+id/spinnerPrimeraHora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hasta:"
+            android:textStyle="bold"
+            android:textColor="@color/secondary_dark" />
+
+        <Spinner
+            android:id="@+id/spinnerSegundaHora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/black" />
+
+        <!--Boton-->
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar Horario"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/secondary_dark"
+            app:cornerRadius="12dp"
+            android:elevation="4dp"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+
+</ScrollView>

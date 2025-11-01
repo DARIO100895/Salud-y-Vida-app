@@ -18,7 +18,6 @@ class MedicoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMedicoBinding
     private val viewModel : MedicoViewModel by viewModels()
     private var medico : Medico? = null
-
     private var especialidades : List<Especialidad> = emptyList()
     private var isEditMode = false
 
@@ -147,8 +146,10 @@ class MedicoActivity : AppCompatActivity() {
         val nombre = binding.etNombre.text.toString().trim()
         val apellido = binding.etApellido.text.toString().trim()
         val telefono = binding.etTelefono.text.toString().trim()
+
         val estado = binding.spinnerEstado.selectedItem.toString()
         val estadoBoolean = estado == "Activo"
+
         val especialidadNombre = binding.spinnerEspecialidad.selectedItem.toString()
         val especialidadSeleccionada = especialidades.find { it.nombre == especialidadNombre }
 
