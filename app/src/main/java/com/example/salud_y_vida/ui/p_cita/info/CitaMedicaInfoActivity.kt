@@ -6,91 +6,86 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.salud_y_vida.R
+import com.example.salud_y_vida.data.model.Cita
+import com.example.salud_y_vida.databinding.ActivityCitaMedicaInfoBinding
 import com.example.salud_y_vida.ui.p_cita.addon.CitaMedicaActivity
+import com.example.salud_y_vida.ui.p_cita.view.CitaViewModel
 
 class CitaMedicaInfoActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityCitaMedicaInfoBinding
+    private val viewModel: CitaViewModel by viewModels()
+    private lateinit var cita: Cita
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_cita_medica_info)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-        //  Referencias a los elementos
-        val tvMensaje = findViewById<LinearLayout>(R.id.tvMensaje)
-        val btnCrearCita = findViewById<Button>(R.id.btnCrearCita)
-        val btnEditarDatos = findViewById<Button>(R.id.btnEditarDatos)
-        val btnSalir = findViewById<Button>(R.id.btnSalir)
-        val btnConfirmarCita = findViewById<Button>(R.id.btnConfirmarCita)
+        binding = ActivityCitaMedicaInfoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val objIntent = intent
+        cita = intent.getParcelableExtra("CITA")!!
+        mostrarDatos(cita)
 
-        val paciente = objIntent.getStringExtra("elPaciente").orEmpty()
-        val medico = objIntent.getStringExtra("elMedico").orEmpty()
-        val fecha = objIntent.getStringExtra("elFecha").orEmpty()
-        val hora = objIntent.getStringExtra("elHora").orEmpty()
-        val estado = objIntent.getStringExtra("elEstado").orEmpty()
+        setupObservers()
+        setupClickListeners()
+    }
 
-        //  Función para crear cada fila visualmente
-        fun crearFila(label: String, valor: String): LinearLayout {
-
-            val fila = LinearLayout(this).apply {
-                orientation = LinearLayout.HORIZONTAL
-                setPadding(0, 12, 0, 12)
+    private fun setupObservers() {
+        viewModel.operationSuccess.observe(this) { success ->
+            if (success) {
+                Toast.makeText(this, "Cita eliminada correctamente", Toast.LENGTH_SHORT).show()
+                finish()
             }
-            val tvLabel = TextView(this).apply {
-                text = "$label:"
-                setTextColor(getColor(R.color.secondary_dark))
-                textSize = 16f
-                setTypeface(null, Typeface.BOLD)
-                layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
-            }
-
-            val tvValor = TextView(this).apply {
-                text = valor
-                setTextColor(getColor(R.color.black))
-                textSize = 16f
-                layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 2f)
-            }
-
-            fila.addView(tvLabel)
-            fila.addView(tvValor)
-            return fila
         }
 
-        //  Agregar filas al contenedor dinámico
-        tvMensaje.addView(crearFila("Paciente", paciente))
-        tvMensaje.addView(crearFila("Médico", medico))
-        tvMensaje.addView(crearFila("Fecha", fecha))
-        tvMensaje.addView(crearFila("Hora disponible", hora))
-        tvMensaje.addView(crearFila("Estado", estado))
+        viewModel.error.observe(this) { error ->
+            error?.let {
+                Toast.makeText(this, "Error: $it", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 
-//  Botón Crear Cita (abre nuevamente el registro)
-        btnCrearCita.setOnClickListener {
-            val intent = Intent(this, CitaMedicaActivity::class.java)
+    private fun setupClickListeners() {
+        binding.btnActualizar.setOnClickListener {
+            val intent = Intent(this, CitaMedicaActivity::class.java).apply {
+                putExtra("CITA", cita)
+            }
             startActivity(intent)
         }
 
-        //  Botón Editar Datos (funciona como retroceso al registro)
-        btnEditarDatos.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
-        }
+        binding.btnVolver.setOnClickListener { finish() }
 
-        //  Botón Salir (cierra la aplicación completamente)
-        btnSalir.setOnClickListener {
-            finishAffinity() // Cierra todas las actividades y sale de la app, considerar para los activitys de los demás compañeros
-        }
+        binding.btnEliminar.setOnClickListener { confirmarEliminar() }
+    }
 
-        //  Botón Confirmar Cita (sin acción por ahora)
-        btnConfirmarCita.setOnClickListener {
+    private fun mostrarDatos(c: Cita) = with(binding) {
+        tvId.text = "ID: ${c.id ?: "N/A"}"
+        tvPaciente.text = "Paciente: ${c.paciente?.nombrePaciente ?: "Sin asignar"}"
+        tvMedico.text = "Médico: ${c.medico?.apellidoMed ?: "Sin asignar"}"
+        tvFecha.text = "Fecha: ${c.fechaCita ?: "N/A"}"
+        tvHora.text = "Hora: ${c.horaCita ?: "N/A"}"
+        tvEstado.text = "Estado: ${c.estadoCita ?: "N/A"}"
+    }
 
-        }
+    private fun confirmarEliminar() {
+        AlertDialog.Builder(this)
+            .setTitle("Confirmar Eliminación")
+            .setMessage("¿Estás seguro de eliminar esta cita médica?")
+            .setPositiveButton("Sí") { _, _ ->
+                cita.id?.let { id ->
+                    viewModel.eliminarCita(id)
+                } ?: run {
+                    Toast.makeText(this, "Error: ID no válido", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("No", null)
+            .show()
     }
 }

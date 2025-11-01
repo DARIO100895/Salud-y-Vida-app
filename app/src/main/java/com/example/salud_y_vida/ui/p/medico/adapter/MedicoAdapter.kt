@@ -33,6 +33,7 @@ class MedicoAdapter (
     override fun onBindViewHolder(holder: VH, position: Int) =
         holder.bind(lista[position])
 
+
     override fun getItemCount() = lista.size
 
     //Actualizar lista despues del CRUD

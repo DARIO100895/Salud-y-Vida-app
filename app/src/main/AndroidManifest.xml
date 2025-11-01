@@ -57,30 +57,27 @@
             android:name=".ui.p_paciente.info.PacienteInfoActivity"
             android:exported="true" />
 
-
         <!-- Cita -->
         <activity android:name=".ui.p_cita.list.CitaListActivity"
-                    android:exported="true"
-                    android:theme="@style/Theme.Salud_y_Vida" />
+                  android:exported="true"
+                  android:theme="@style/Theme.Salud_y_Vida" />
         <activity
             android:name=".ui.p_cita.addon.CitaMedicaActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".ui.p_cita.info.CitaMedicaInfoActivity"
             android:exported="true" />
+
         <!--Medicos-->
         <activity android:name=".ui.p.medico.list.MedicoListActivity"
             android:exported="true"
             android:theme="@style/Theme.Salud_y_Vida"/>
+
         <activity android:name=".ui.p.medico.addon.MedicoActivity"
             android:exported="true"/>
+
         <activity android:name=".ui.p.medico.info.MedicoInfoActivity"
             android:exported="true"/>
-
-
-
-
 
         <!--Especialidad-->
         <activity android:name=".ui.p_especialidad.list.EspecialidadListActivity"
@@ -90,6 +87,14 @@
             android:exported="true"/>
         <activity android:name=".ui.p_especialidad.info.EspecialidadInfoActivity"
             android:exported="true"/>
+
+        <!--Horario-->
+        <activity android:name=".ui.p_horario.list.HorarioListActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Salud_y_Vida"/>
+        <activity android:name=".ui.p_horario.addon.NuevoHorarioActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Salud_y_Vida"/>
 
 
 

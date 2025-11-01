@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.salud_y_vida.data.model.Especialidad
+import com.example.salud_y_vida.data.model.Horario
 import com.example.salud_y_vida.data.model.Medico
 import com.example.salud_y_vida.data.repository.EspecialidadRepository
+import com.example.salud_y_vida.data.repository.HorarioRepository
 import com.example.salud_y_vida.data.repository.MedicoRepository
 import kotlinx.coroutines.launch
 
@@ -14,13 +16,15 @@ class MedicoViewModel : ViewModel() {
 
     private val medicoRepository = MedicoRepository()
     private val especialidadRepository = EspecialidadRepository()
+    private val horarioRepository = HorarioRepository()
 
     private val _medicos = MutableLiveData<List<Medico>>()
     val medicos : LiveData<List<Medico>> = _medicos
 
     private val _especialidades = MutableLiveData<List<Especialidad>>()
-
     val especialidades : LiveData<List<Especialidad>> = _especialidades
+
+    val horarios = MutableLiveData<List<Horario>>()
 
     private val _medicoCreado = MutableLiveData<Medico?>()
     val medicoCreado : LiveData<Medico?> = _medicoCreado
@@ -103,6 +107,28 @@ class MedicoViewModel : ViewModel() {
         _isLoading.value = false
     }
 
+    fun cargarHorariosPorMedico(idMedico: Int) = viewModelScope.launch {
+
+        _isLoading.value = true
+    try {
+            val result = horarioRepository.listar()
+            if (result.isSuccess) {
+                val todos = result.getOrNull() ?: emptyList()
+                val delMedico = todos.filter { it.medicoId == idMedico }
+                horarios.value = delMedico
+                _error.value = null
+            } else {
+                _error.value = result.exceptionOrNull()?.message
+                horarios.value = emptyList()
+            }
+        } catch (e: Exception) {
+            _error.value = e.message
+            horarios.value = emptyList()
+        }
+        _isLoading.value = false
+    }
+
+
     fun actualizarMedico (id : Int, medico: Medico) = viewModelScope.launch {
         _isLoading.value = true
         try{
@@ -139,6 +165,24 @@ class MedicoViewModel : ViewModel() {
             _error.value = e.message
             _operationSuccess.value = false
     }
+        _isLoading.value = false
+    }
+
+    fun obtenerMedicoId(id : Int) = viewModelScope.launch{
+        _isLoading.value = true
+        try {
+            val result = medicoRepository.obtener(id)
+            if (result.isSuccess) {
+                _operationSuccess.value = true
+                cargarMedicos()
+            } else {
+                _error.value = result.exceptionOrNull()?.message
+                _operationSuccess.value = false
+            }
+        } catch (e : Exception) {
+            _error.value = e.message
+            _operationSuccess.value = false
+        }
         _isLoading.value = false
     }
     fun resetOperationSuccess() {

@@ -2,6 +2,7 @@ package com.example.salud_y_vida.data.api
 
 import com.example.salud_y_vida.data.model.Cita
 import com.example.salud_y_vida.data.model.Especialidad
+import com.example.salud_y_vida.data.model.Horario
 import com.example.salud_y_vida.data.model.Medico
 import com.example.salud_y_vida.data.model.Paciente
 import retrofit2.Response
@@ -26,7 +27,6 @@ interface ApiService {
     suspend fun deletePaciente(@Path("id") id: Int) : Response<Void>
 
     //CitaMedica
-
     @GET("api/v1/cita")
     suspend fun getCita() : Response<List<Cita>>
     @GET("api/v1/cita/{id}")
@@ -39,7 +39,6 @@ interface ApiService {
     suspend fun deleteCita(@Path("id")id: Int) : Response<Void>
 
     //Medicos
-
     @GET("api/v1/medicos")
     suspend fun getMedicos() : Response<List<Medico>>
     @GET("api/v1/medicos/{id}")
@@ -51,9 +50,7 @@ interface ApiService {
     @DELETE("api/v1/medicos/{id}")
     suspend fun deleteMedicos(@Path("id") id: Int) : Response<Void>
 
-
     //Especialidad
-
     @GET("api/v1/especialidad")
     suspend fun getEspecialidad() : Response<List<Especialidad>>
     @GET("api/v1/especialidad/{id}")
@@ -64,4 +61,16 @@ interface ApiService {
     suspend fun updateEspecialidad(@Path("id") id: Int, @Body especialidad: Especialidad) : Response<Especialidad>
     @DELETE("api/v1/especialidad/{id}")
     suspend fun deleteEspecialidad(@Path("id") id: Int) : Response<Void>
+
+    //Horarios
+    @GET("api/v1/horario")
+    suspend fun getHorario() : Response<List<Horario>>
+    @GET("api/v1/horario/{id}")
+    suspend fun getHorario(@Path("id") id: Int) : Response<Horario>
+    @POST("api/v1/horario")
+    suspend fun createHorario(@Body horario: Horario) : Response<Horario>
+    @PUT("api/v1/horario/{id}")
+    suspend fun updateHorario(@Path("id") id: Int, @Body horario: Horario) : Response<Horario>
+    @DELETE("api/v1/horario/{id}")
+    suspend fun deleteHorario(@Path("id") id: Int) : Response<Void>
 }

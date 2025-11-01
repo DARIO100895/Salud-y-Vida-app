@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.salud_y_vida.R
 import com.example.salud_y_vida.databinding.ActivityMedicoListBinding
 import com.example.salud_y_vida.ui.dashboard.DashboardActivity
 import com.example.salud_y_vida.ui.p.medico.adapter.MedicoAdapter
@@ -46,6 +47,7 @@ class MedicoListActivity : AppCompatActivity() {
         setupObservers()
 
         //Buscador
+
         binding.searchMedico.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean = false
             override fun onQueryTextChange(newText: String?): Boolean {
