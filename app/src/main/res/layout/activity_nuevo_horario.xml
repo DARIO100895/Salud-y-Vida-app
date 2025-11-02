@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.p.medico.addon.MedicoActivity">
+
+    <!-- Fondo -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/fondo_list"
+        android:scaleType="centerCrop" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="28dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +35,7 @@
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="@color/secondary_dark"
+            android:textColor="@color/black"
             android:layout_marginBottom="16dp" />
 
         <TextView
@@ -31,7 +43,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="Ingrese horario"
-            android:textColor="@color/secondary_dark"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_marginBottom="16dp" />
 
@@ -46,6 +58,8 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="12dp"
                 android:textColor="@color/black"
+                android:background="@drawable/searchview_background"
+                android:backgroundTint="@color/white"
                 android:enabled="false"
                 android:id="@+id/etNombre"
                 android:hint="Nombre"/>
@@ -56,29 +70,30 @@
             android:layout_height="wrap_content"
             android:text="Desde:"
             android:textStyle="bold"
-            android:textColor="@color/secondary_dark"
+            android:textColor="@color/black"
             android:layout_marginBottom="8dp" />
 
         <Spinner
             android:id="@+id/spinnerPrimeraHora"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
-            android:layout_marginBottom="24dp" />
+            android:background="@drawable/searchview_background"
+            android:backgroundTint="@color/white"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hasta:"
             android:textStyle="bold"
-            android:textColor="@color/secondary_dark" />
+            android:textColor="@color/black" />
 
         <Spinner
             android:id="@+id/spinnerSegundaHora"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:backgroundTint="@color/black" />
+            android:background="@drawable/searchview_background"
+            android:backgroundTint="@color/white"/>
 
         <!--Boton-->
 
@@ -87,12 +102,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Guardar Horario"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/secondary_dark"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/black"
             app:cornerRadius="12dp"
             android:elevation="4dp"
             android:layout_marginTop="8dp" />
 
     </LinearLayout>
+    </ScrollView>
 
-</ScrollView>
+</FrameLayout>

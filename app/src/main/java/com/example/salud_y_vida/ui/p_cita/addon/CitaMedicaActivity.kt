@@ -136,6 +136,7 @@ class CitaMedicaActivity : AppCompatActivity() {
         binding.etFecha.setOnClickListener {
             mostrarDatePicker()
         }
+        binding.btnVolver.setOnClickListener { finish() }
     }
 
     private fun cargarMedicos() {

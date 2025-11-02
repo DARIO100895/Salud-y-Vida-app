@@ -1,8 +1,19 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="28dp">
+    android:layout_height="match_parent">
+
+    <!-- Fondo -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/fondo_list"
+        android:scaleType="centerCrop" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="28dp">
 
     <LinearLayout
         android:orientation="vertical"
@@ -23,48 +34,64 @@
             android:id="@+id/tvId"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/tvNombre"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/tvApellido"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/tvDni"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/tvEdad"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/tvSexo"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/tvTelefono"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/tvDireccion"
             android:textSize="16sp"
             android:layout_marginBottom="24dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -94,4 +121,5 @@
             android:text="Volver"
             app:cornerRadius="12dp"/>
     </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</FrameLayout>

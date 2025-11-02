@@ -84,6 +84,7 @@ class MedicoActivity : AppCompatActivity() {
                 guardarMedico()
             }
         }
+        binding.btnVolver.setOnClickListener { finish() }
     }
 
     private  fun cargarEspecialidades() {

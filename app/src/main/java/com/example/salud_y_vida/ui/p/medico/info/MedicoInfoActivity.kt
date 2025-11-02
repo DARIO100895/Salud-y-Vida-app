@@ -65,6 +65,7 @@ class MedicoInfoActivity : AppCompatActivity() {
     }
 
     private fun mostrarDatos(m: Medico) = with(binding) {
+        tvId.text = "ID: ${m.id ?: "N/A"}"
         tvNombre.text = "Nombre: ${m.nombreMed ?: "N/A"}"
         tvApellido.text = "Apellido: ${m.apellidoMed ?: "N/A"}"
         tvEspecialidad.text = "Especialidad: ${m.especialidad?.nombre ?: "Sin asignar"}"

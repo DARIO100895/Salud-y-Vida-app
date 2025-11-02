@@ -2,6 +2,7 @@ package com.example.salud_y_vida.ui.dashboard
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.salud_y_vida.databinding.ActivityDashboardBinding
 import com.example.salud_y_vida.ui.p.medico.list.MedicoListActivity
@@ -16,6 +17,10 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        actionBar?.hide()
+
 
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -143,6 +143,7 @@ class CitaViewModel : ViewModel() {
 
     fun crearCita(cita : Cita) = viewModelScope.launch {
         _isLoading.value = true
+
         try{
             val result = citaRepository.crear(cita)
             if(result.isSuccess) {

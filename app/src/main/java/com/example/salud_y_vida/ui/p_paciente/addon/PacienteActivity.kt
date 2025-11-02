@@ -57,6 +57,8 @@ class PacienteActivity : AppCompatActivity() {
             }
         }
 
+
+
         viewModel.error.observe(this) {error ->
             error?.let {
                 Toast.makeText(this,"Error: $it", Toast.LENGTH_LONG).show()
@@ -70,6 +72,7 @@ class PacienteActivity : AppCompatActivity() {
                 guardarPaciente()
             }
         }
+        binding.btnVolver.setOnClickListener { finish() }
     }
 
     private fun llenarFormulario(p : Paciente) {
