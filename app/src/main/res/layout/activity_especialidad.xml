@@ -61,6 +61,15 @@
             android:elevation="4dp"
             android:layout_marginTop="8dp" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnVolver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Volver"
+            app:cornerRadius="12dp"/>
+
+
+
     </LinearLayout>
 
 </ScrollView>

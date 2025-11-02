@@ -38,13 +38,13 @@ class HorarioViewModel : ViewModel() {
             val horarioResult = horarioRepository.listar()
             val medicoResult = medicoRepository.listar()
 
-            if(horarioResult.isSuccess && medicoResult.isSuccess) {
+            if (horarioResult.isSuccess && medicoResult.isSuccess) {
                 val horarios = horarioResult.getOrNull() ?: emptyList()
                 val medicos = medicoResult.getOrNull() ?: emptyList()
 
                 val horarioMedico = horarios.map { horario ->
                     val medicoEncontrado = medicos.find { it.id == horario.medicoId }
-                    horario.copy( medico = medicoEncontrado)
+                    horario.copy(medico = medicoEncontrado)
                 }
                 _horario.value = horarioMedico
                 _error.value = null
@@ -53,12 +53,52 @@ class HorarioViewModel : ViewModel() {
                     ?: medicoResult.exceptionOrNull()?.message
                 _medico.value = emptyList()
             }
-        } catch ( e : Exception) {
+        } catch (e: Exception) {
+            _error.value = e.message
+            _horario.value = emptyList()
+        }
+        _isLoading.value = false
+
+    }
+
+    fun cargarHorariosPorMedico(idMedico: Int) = viewModelScope.launch {
+        _isLoading.value = true
+        try {
+            val result = horarioRepository.listar()
+            if (result.isSuccess) {
+                val todos = result.getOrNull() ?: emptyList()
+                val delMedico = todos.filter { it.medicoId == idMedico }
+                _horario.value = delMedico
+            } else {
+                _error.value = result.exceptionOrNull()?.message
+                _horario.value = emptyList()
+            }
+        } catch (e: Exception) {
             _error.value = e.message
             _horario.value = emptyList()
         }
         _isLoading.value = false
     }
+
+    fun cargarTodosLosHorarios() = viewModelScope.launch {
+        _isLoading.value = true
+        try {
+            val result = horarioRepository.listar()
+            if (result.isSuccess) {
+                _horario.value = result.getOrNull() ?: emptyList()
+            } else {
+                _horario.value = emptyList()
+                _error.value = result.exceptionOrNull()?.message
+            }
+        } catch (e: Exception) {
+            _error.value = e.message
+            _horario.value = emptyList()
+        }
+        _isLoading.value = false
+    }
+
+
+
 
     fun cargarMedico() = viewModelScope.launch {
         _isLoading.value = true
@@ -98,6 +138,9 @@ class HorarioViewModel : ViewModel() {
         _isLoading.value = false
     }
 
+
+
+
     fun actualizarHorario(id : Int, horario : Horario) = viewModelScope.launch {
         _isLoading.value = true
         try {
@@ -113,8 +156,8 @@ class HorarioViewModel : ViewModel() {
                 _operationSuccess.value = false
             }
         } catch ( e : Exception){
-        _error.value = e.message
-        _operationSuccess.value = false
+            _error.value = e.message
+            _operationSuccess.value = false
         }
         _isLoading.value = false
     }

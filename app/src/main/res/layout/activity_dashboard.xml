@@ -2,8 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="28dp">
+    android:layout_height="match_parent">
 
     <!-- Fondo -->
     <ImageView
@@ -14,13 +13,13 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="28dp">
+        android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="28dp"
         android:gravity="center">
 
         <TextView
@@ -39,6 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
+            android:textColor="@color/secondary_dark"
+            android:textStyle="bold"
             android:text="Pacientes"
             android:textSize="18sp"
             app:cornerRadius="12dp"
@@ -52,6 +53,9 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/secondary_dark"
+            android:textStyle="bold"
             android:text="Médicos"
             android:textSize="18sp"
             app:cornerRadius="12dp"
@@ -64,6 +68,9 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/secondary_dark"
+            android:textStyle="bold"
             android:text="Especialidades"
             android:textSize="18sp"
             app:cornerRadius="12dp"
@@ -76,6 +83,9 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/secondary_dark"
+            android:textStyle="bold"
             android:text="Citas"
             android:textSize="18sp"
             app:cornerRadius="12dp"
@@ -83,28 +93,6 @@
             app:strokeWidth="2dp"
             android:layout_marginBottom="12dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnMedicamentos"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Medicamentos"
-            android:textSize="18sp"
-            app:cornerRadius="12dp"
-            app:strokeColor="@color/secondary_dark"
-            app:strokeWidth="2dp"
-            android:layout_marginBottom="12dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnHistoria"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Historia Clínica"
-            android:textSize="18sp"
-            app:cornerRadius="12dp"
-            app:strokeColor="@color/secondary_dark"
-            app:strokeWidth="2dp" />
     </LinearLayout>
     </ScrollView>
 </FrameLayout>

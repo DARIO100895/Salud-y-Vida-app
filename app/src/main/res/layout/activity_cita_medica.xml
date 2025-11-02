@@ -138,6 +138,13 @@
             android:backgroundTint="@color/black"
             app:cornerRadius="12dp"
             android:elevation="4dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnVolver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Volver"
+            app:cornerRadius="12dp"/>
     </LinearLayout>
     </ScrollView>
 </FrameLayout>

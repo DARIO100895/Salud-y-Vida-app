@@ -10,7 +10,9 @@ data class Horario (
     val id : Int? = null,
     @SerializedName("medicoId")
     val medicoId : Int? = null,
+    @SerializedName("horario")
     val horario : String? = null,
+    @SerializedName("estadoHora")
     val estadoHora : Boolean? = null,
     val medico : Medico? = null
 

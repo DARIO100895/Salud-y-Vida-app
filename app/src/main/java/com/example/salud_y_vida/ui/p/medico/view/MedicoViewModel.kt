@@ -25,7 +25,6 @@ class MedicoViewModel : ViewModel() {
     val especialidades : LiveData<List<Especialidad>> = _especialidades
 
     val horarios = MutableLiveData<List<Horario>>()
-
     private val _medicoCreado = MutableLiveData<Medico?>()
     val medicoCreado : LiveData<Medico?> = _medicoCreado
 
@@ -54,8 +53,19 @@ class MedicoViewModel : ViewModel() {
                     val especialidadEncontrada = especialidades.find { it.id == medico.especialidadId }
                     medico.copy(especialidad = especialidadEncontrada)
                 }
+                val medicosConHoras = medicosConEspecialidad.map { medico ->
+                    val horasDelMedico = horarios.value
+                        ?.filter { it.medicoId == medico.id && it.estadoHora == true }
+                        ?.mapNotNull { it.horario }
+                        ?.sorted()
+                        ?: emptyList()
+                    val resumen = if (horasDelMedico.isNotEmpty())
+                        "${horasDelMedico.first()} - ${horasDelMedico.last()}"
+                    else "Sin horarios"
 
-                _medicos.value = medicosConEspecialidad
+                    medico.copy(telefonoMed = resumen)
+                }
+                _medicos.value = medicosConHoras
                 _error.value = null
             } else {
                 _error.value = medicosResult.exceptionOrNull()?.message
@@ -110,7 +120,7 @@ class MedicoViewModel : ViewModel() {
     fun cargarHorariosPorMedico(idMedico: Int) = viewModelScope.launch {
 
         _isLoading.value = true
-    try {
+        try {
             val result = horarioRepository.listar()
             if (result.isSuccess) {
                 val todos = result.getOrNull() ?: emptyList()
@@ -128,6 +138,51 @@ class MedicoViewModel : ViewModel() {
         _isLoading.value = false
     }
 
+    fun cargarMedicosConHorarios() = viewModelScope.launch {
+        _isLoading.value = true
+        try {
+            val medicosResult = medicoRepository.listar()
+            val especialidadesResult = especialidadRepository.listar()
+            val horariosResult = horarioRepository.listar()
+
+            if (medicosResult.isSuccess && especialidadesResult.isSuccess && horariosResult.isSuccess) {
+                val medicos = medicosResult.getOrNull() ?: emptyList()
+                val especialidades = especialidadesResult.getOrNull() ?: emptyList()
+                val horarios = horariosResult.getOrNull() ?: emptyList()
+
+                val medicosConDatos = medicos.map { medico ->
+                    val especialidad = especialidades.find { it.id == medico.especialidadId }
+
+                    val horasDelMedico = horarios
+                        .filter { it.medicoId == medico.id && it.estadoHora == true }
+                        .mapNotNull { it.horario }
+                        .sorted()
+
+                    val resumen = if (horasDelMedico.isNotEmpty())
+                        "${horasDelMedico.first()} AM - ${horasDelMedico.last()} PM"
+                    else
+                        "Sin horarios"
+
+                    medico.copy(
+                        especialidad = especialidad,
+                        horarioResumen = resumen
+                    )
+                }
+                _medicos.value = medicosConDatos
+                _error.value = null
+            } else {
+                _error.value = medicosResult.exceptionOrNull()?.message
+                    ?: especialidadesResult.exceptionOrNull()?.message
+                            ?: horariosResult.exceptionOrNull()?.message
+                _medicos.value = emptyList()
+            }
+        } catch (e: Exception) {
+            _error.value = e.message
+            _medicos.value = emptyList()
+        }
+        _isLoading.value = false
+    }
+
 
     fun actualizarMedico (id : Int, medico: Medico) = viewModelScope.launch {
         _isLoading.value = true
@@ -138,7 +193,7 @@ class MedicoViewModel : ViewModel() {
                 val especialidad = _especialidades.value?.find { it.id == actualizado?.especialidadId }
                 _medicoCreado.value = actualizado?.copy(especialidad = especialidad)
                 _operationSuccess.value = true
-                cargarMedicos()
+                cargarMedicosConHorarios()
             } else {
                 _error.value = result.exceptionOrNull()?.message
                 _operationSuccess.value = false
@@ -156,7 +211,7 @@ class MedicoViewModel : ViewModel() {
             val result = medicoRepository.eliminar(id)
             if (result.isSuccess) {
                 _operationSuccess.value = true
-                cargarMedicos()
+                cargarMedicosConHorarios()
             } else {
                 _error.value = result.exceptionOrNull()?.message
                 _operationSuccess.value = false
@@ -164,7 +219,7 @@ class MedicoViewModel : ViewModel() {
         } catch (e : Exception) {
             _error.value = e.message
             _operationSuccess.value = false
-    }
+        }
         _isLoading.value = false
     }
 
@@ -174,7 +229,7 @@ class MedicoViewModel : ViewModel() {
             val result = medicoRepository.obtener(id)
             if (result.isSuccess) {
                 _operationSuccess.value = true
-                cargarMedicos()
+                cargarMedicosConHorarios()
             } else {
                 _error.value = result.exceptionOrNull()?.message
                 _operationSuccess.value = false

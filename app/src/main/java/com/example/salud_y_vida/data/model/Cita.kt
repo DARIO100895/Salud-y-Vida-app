@@ -12,6 +12,7 @@ data class Cita (
 
     @SerializedName("pacienteid")
     val pacienteid: Int? = null,
+
     @SerializedName("medicoid")
     val medicoid: Int? = null,
 
@@ -20,6 +21,7 @@ data class Cita (
     val estadoCita : String? = null,
 
     val paciente : Paciente? = null,
+
     val medico : Medico? = null
 
 ) : Parcelable

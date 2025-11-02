@@ -54,7 +54,7 @@ class MedicoListActivity : AppCompatActivity() {
                 filtrar(newText.orEmpty())
                 return true
             }
-            })
+        })
 
         //FAB agregar
         binding.fabAdd.setOnClickListener {
@@ -69,7 +69,7 @@ class MedicoListActivity : AppCompatActivity() {
 
         //Cargar datos
         Log.d("MEDICOS", "Solicitando carga...")
-        viewModel.cargarMedicos()
+        viewModel.cargarMedicosConHorarios()
     }
 
     private fun setupObservers() {
@@ -107,7 +107,7 @@ class MedicoListActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         // Recargar datos cuando se regresa de otra actividad
-        viewModel.cargarMedicos()
+        viewModel.cargarMedicosConHorarios()
     }
 
     private fun filtrar(texto : String) {

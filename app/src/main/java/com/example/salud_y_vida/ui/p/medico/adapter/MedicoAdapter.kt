@@ -19,6 +19,7 @@ class MedicoAdapter (
         fun bind(m: Medico) = with(binding) {
             tvNombre.text = "${m.nombreMed} ${m.apellidoMed}"
             tvEspecialidad.text = "Especialidad: ${m.especialidad?.nombre ?: "Sin asignar"}"
+            tvHorarioResumen.text = m.horarioResumen ?: "Sin horarios"
             root.setOnClickListener { onClick(m) }
         }
     }

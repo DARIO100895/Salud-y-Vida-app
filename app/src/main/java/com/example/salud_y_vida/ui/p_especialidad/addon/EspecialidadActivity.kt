@@ -63,11 +63,14 @@ class EspecialidadActivity : AppCompatActivity() {
     }
 
     private fun setupClickListeners() {
+
+
         binding.btnGuardar.setOnClickListener {
             if(validarFormulario()) {
                 guardarEspecialidad()
             }
         }
+        binding.btnVolver.setOnClickListener { finish() }
     }
 
     private fun llenarFormulario(e : Especialidad) {

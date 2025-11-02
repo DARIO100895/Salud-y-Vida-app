@@ -16,6 +16,8 @@ data class Medico (
 
     val telefonoMed : String? = null,
     val estadoMed : Boolean? = null,
-    val especialidad : Especialidad? = null
+    val especialidad : Especialidad? = null,
+
+    val horarioResumen : String? = null
 
 ) : Parcelable
